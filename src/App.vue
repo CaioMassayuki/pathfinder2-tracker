@@ -1,4 +1,144 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import CardList from "./components/Card/CardList.vue";
+
+type TESTE = {
+  actionCards: Cards,
+  itemCards: Cards,
+}
+
+const DEFAULT_CARDS: TESTE = {
+  actionCards: [
+    {
+      title:
+        "Lorem ipsum dolor sit amet, consectetur o eiusmodLorem ipsum dolor sit",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur o eiusmodLorem ipsum dolor Lorem ipsum dolor sit amet, consectetur o eiusmodLorem ipsum dolor Lorem ipsum dolor sit amet, consectetur o eiusmodLorem ipsum dolor",
+      quantity: "1",
+    },
+    {
+      title: "Lorem ipsum dolor sit amet",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur o eiusmodLorem ipsum dolor Lorem ipsum dolor sit amet, consectetur o eiusmodLorem ipsum dolor Lorem ipsum dolor sit amet, consectetur o eiusmodLorem ipsum dolor",
+      quantity: "1000",
+    },
+    {
+      title: "Lorem",
+      description: "Lorem ",
+      quantity: "unlimited",
+    },
+    {
+      title: "Lorem",
+      description: "Lorem ",
+      quantity: "unlimited",
+    },
+    {
+      title: "Lorem",
+      description: "Lorem ",
+      quantity: "unlimited",
+    },
+    {
+      title: "Lorem",
+      description: "Lorem ",
+      quantity: "unlimited",
+    },
+    {
+      title: "Lorem",
+      description: "Lorem ",
+      quantity: "unlimited",
+    },
+  ],
+  itemCards: [
+    {
+      title:
+        "Lorem ipsum dolor sit amet, consectetur o eiusmodLorem ipsum dolor sit",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur o eiusmodLorem ipsum dolor Lorem ipsum dolor sit amet, consectetur o eiusmodLorem ipsum dolor Lorem ipsum dolor sit amet, consectetur o eiusmodLorem ipsum dolor",
+      quantity: "1",
+    },
+    {
+      title: "Lorem ipsum dolor sit amet",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur o eiusmodLorem ipsum dolor Lorem ipsum dolor sit amet, consectetur o eiusmodLorem ipsum dolor Lorem ipsum dolor sit amet, consectetur o eiusmodLorem ipsum dolor",
+      quantity: "1000",
+    },
+    {
+      title: "Lorem",
+      description: "Lorem ",
+      quantity: "unlimited",
+    },
+    {
+      title: "Lorem",
+      description: "Lorem ",
+      quantity: "unlimited",
+    },
+    {
+      title: "Lorem",
+      description: "Lorem ",
+      quantity: "unlimited",
+    },
+    {
+      title: "Lorem",
+      description: "Lorem ",
+      quantity: "unlimited",
+    },
+    {
+      title: "Lorem",
+      description: "Lorem ",
+      quantity: "unlimited",
+    },
+    {
+      title: "Lorem",
+      description: "Lorem ",
+      quantity: "unlimited",
+    },
+    {
+      title: "Lorem",
+      description: "Lorem ",
+      quantity: "unlimited",
+    },
+    {
+      title: "Lorem",
+      description: "Lorem ",
+      quantity: "unlimited",
+    },
+    {
+      title: "Lorem",
+      description: "Lorem ",
+      quantity: "unlimited",
+    },
+    {
+      title: "Lorem",
+      description: "Lorem ",
+      quantity: "unlimited",
+    },
+    {
+      title: "Lorem",
+      description: "Lorem ",
+      quantity: "unlimited",
+    },
+    {
+      title: "Lorem",
+      description: "Lorem ",
+      quantity: "unlimited",
+    },
+    {
+      title: "Lorem",
+      description: "Lorem ",
+      quantity: "unlimited",
+    },
+    {
+      title: "Lorem",
+      description: "Lorem ",
+      quantity: "unlimited",
+    },
+    {
+      title: "Lorem",
+      description: "Lorem ",
+      quantity: "unlimited",
+    },
+  ],
+};
+</script>
 
 <template>
   <main class="h-full flex flex-col items-center justify-start p-4">
@@ -40,69 +180,15 @@
     </div>
     <section class="flex w-full h-[780px]">
       <div
-        class="w-1/2 h-full p-2 mr-2 flex flex-col items-center rounded-lg border-2 border-red-900"
+        class="mr-2 w-1/2 h-full p-2 flex flex-col overflow-y-auto rounded-lg border-2 border-red-900"
       >
-        <button
-          v-for="index in 3"
-          :key="index"
-          class="w-[860px] p-2 mb-2 rounded-lg border-2 border-red-500 hover:shadow-md hover:shadow-red-200 hover:border-red-200 ease-in-transition"
-        >
-          <div class="pb-2 flex rounded-b-sm border-b-2 border-red-500">
-            <h3
-              class="w-9/12 text-start hover:text-red-300 text-2xl font-bold text-nowrap text-ellipsis overflow-x-hidden ease-in-transition"
-            >
-              Lorem ipsum dolor sit amet, consectetur o eiusmodLorem ipsum dolor
-              sit
-            </h3>
-            <span class="w-3/12 flex justify-end items-center">
-              <p class="mr-1">Limit 1</p>
-              <button
-                class="px-1 h-8 rounded-sm border-2 border-red-500 bg-neutral-900 hover:border-neutral-50 hover:bg-neutral-800 transition-all ease-in-out duration-150"
-              >
-                Use Action
-              </button>
-            </span>
-          </div>
-          <p class="h-12 text-wrap text-start overflow-ellipsis line-clamp-2">
-            Descrição "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmodLorem ipsum dolor sit amet, consectetur adipiscing
-            elit, sed do eiusmodLorem ipsum dolor sit ame. elit, sed do
-            eiusmodLorem ipsum dolor sit ame.
-          </p>
-        </button>
+        <CardList :cards="DEFAULT_CARDS.actionCards" :type="'action'" />
       </div>
 
       <div
-        class="w-1/2 h-full p-2 mr-2 flex items-start rounded-lg border-2 border-blue-900"
+        class="w-1/2 h-full p-2 grid grid-cols-2 auto-rows-max gap-2 overflow-y-auto rounded-lg border-2 border-blue-900"
       >
-        <button
-          v-for="index in 3"
-          :key="index"
-          class="w-[400px] p-2 mb-2 rounded-lg border-2 border-blue-500 hover:shadow-md hover:shadow-blue-200 hover:border-blue-200 ease-in-transition"
-        >
-          <div class="pb-2 flex rounded-b-sm border-b-2 border-blue-500">
-            <h3
-              class="w-9/12 text-start hover:text-blue-300 text-2xl font-bold text-nowrap text-ellipsis overflow-x-hidden ease-in-transition"
-            >
-              Lorem ipsum dolor sit amet, consectetur o eiusmodLorem ipsum dolor
-              sit
-            </h3>
-            <span class="w-3/12 flex justify-end items-center">
-              <p class="mr-1">Limit 1</p>
-              <button
-                class="px-1 h-8 rounded-sm border-2 border-blue-500 bg-neutral-900 hover:border-neutral-50 hover:bg-neutral-800 transition-all ease-in-out duration-150"
-              >
-                Use Action
-              </button>
-            </span>
-          </div>
-          <p class="h-12 text-wrap text-start overflow-ellipsis line-clamp-2">
-            Descrição "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmodLorem ipsum dolor sit amet, consectetur adipiscing
-            elit, sed do eiusmodLorem ipsum dolor sit ame. elit, sed do
-            eiusmodLorem ipsum dolor sit ame.
-          </p>
-        </button>
+        <CardList :cards="DEFAULT_CARDS.itemCards" :type="'item'" />
       </div>
     </section>
   </main>
