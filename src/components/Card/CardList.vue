@@ -10,7 +10,7 @@ defineProps<{ cards: Cards; type: CardType }>();
     :key="card.title + index"
     class="p-2 rounded-lg border-2 hover:shadow-md ease-in-transition"
     :class="[
-      type === 'item'
+      type === 'resource'
         ? 'border-blue-500 hover:shadow-blue-200 hover:border-blue-200'
         : 'border-red-500 hover:shadow-red-200 hover:border-red-200 mb-2',
     ]"

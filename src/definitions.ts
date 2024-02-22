@@ -1,9 +1,15 @@
-type Card = {
-    title: string,
-    description: string,
-    quantity: string,
+type CardOptions = {
+  limit: 'rest' | 'ilimited' | 'resource';
+  quantity?: number
 }
 
-type Cards = Card[]
+type Card = {
+  title: string;
+  description: string;
+  quantity: string;
+  options: CardOptions;
+};
 
-type CardType = 'action' | 'item'
+type Cards = Card[];
+
+type CardType = "action" | "resource";
