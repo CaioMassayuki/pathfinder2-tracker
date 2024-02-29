@@ -1,15 +1,27 @@
-type CardOptions = {
-  limit: 'rest' | 'ilimited' | 'resource';
-  quantity?: number
+export type CardOptionsLimit = "rest" | "ilimited" | "resource";
+
+export type CardOptionQuantity = {
+  current: number,
+  max: number,
 }
 
-type Card = {
+export type DialogState = {
+  isOpen: boolean;
+  card: Card | null;
+};
+
+export type CardOptions = {
+  limit: CardOptionsLimit;
+  quantity?: CardOptionQuantity;
+};
+
+export type Card = {
+  id: string;
   title: string;
   description: string;
-  quantity: string;
   options: CardOptions;
 };
 
-type Cards = Card[];
+export type Cards = Card[];
 
-type CardType = "action" | "resource";
+export type CardType = "action" | "resource";

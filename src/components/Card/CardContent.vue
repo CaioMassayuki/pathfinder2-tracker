@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Card, CardType } from '../../definitions'
+
 defineProps<{ cardInfo: Card; type: CardType }>();
 </script>
 
@@ -11,7 +13,7 @@ defineProps<{ cardInfo: Card; type: CardType }>();
       {{ cardInfo.title }}
     </h3>
     <span class="w-4/12 flex justify-end items-center">
-      <p class="mr-1">Quantidade {{ cardInfo.quantity }}</p>
+      <p class="mr-1">Quantidade {{ cardInfo.options.quantity }}</p>
       <button
         v-if="type === 'action'"
         class="px-1 h-8 rounded-sm border-2 border-red-500 bg-neutral-900 hover:border-neutral-50 hover:bg-neutral-800 transition-all ease-in-out duration-150"

@@ -1,11 +1,47 @@
 <script setup lang="ts">
+import { storeToRefs } from "pinia";
+import { ref } from "vue";
 import ActionTracker from "./components/ActionTracker.vue";
 import CardList from "./components/Card/CardList.vue";
 import CardDetail from "./components/CardDetail.vue";
 import { useCardsStore } from "./store/store";
+import { DialogState } from "./definitions";
 
-const { cards } = useCardsStore()
+const store = useCardsStore();
+const { cards } = storeToRefs(store);
 
+const dialogInitialState: DialogState = {
+  isOpen: false,
+  card: null,
+};
+
+const actionDialog = ref({ ...dialogInitialState });
+const resourceDialog = ref({ ...dialogInitialState });
+
+const dialogHandlers = ref({
+  action: {
+    cardDialog: (id: string) => store.getActionCard(id),
+    openCardDialog: (id: string) => {
+      actionDialog.value.isOpen = true;
+      actionDialog.value.card = store.getActionCard(id) || null;
+    },
+    closeCardDialog: () => {
+      actionDialog.value.isOpen = false;
+      actionDialog.value.card = null;
+    },
+  },
+  resource: {
+    cardDialog: (id: string) => store.getResourceCard(id),
+    openCardDialog: (id: string) => {
+      resourceDialog.value.isOpen = true;
+      resourceDialog.value.card = store.getResourceCard(id) || null;
+    },
+    closeCardDialog: () => {
+      resourceDialog.value.isOpen = false;
+      resourceDialog.value.card = null;
+    },
+  },
+});
 </script>
 
 <template>
@@ -18,14 +54,27 @@ const { cards } = useCardsStore()
     <ActionTracker />
     <section class="flex w-full h-[780px]">
       <div class="mr-2 w-1/2 h-full flex flex-col rounded-lg border-2 border-red-900 relative">
-        <CardDetail :type="'action'" :card="cards.actionCards[0]" />
+        <CardDetail
+          v-if="actionDialog.isOpen && actionDialog.card"
+          @close-dialog="dialogHandlers['action'].closeCardDialog"
+          :type="'action'"
+          :card="actionDialog.card"
+        />
         <div class="flex flex-col p-2 overflow-y-auto">
-          <CardList :cards="cards.actionCards" :type="'action'" />
+          <CardList @open-dialog="dialogHandlers['action'].openCardDialog" :cards="cards.actionCards" :type="'action'" />
         </div>
       </div>
 
-      <div class="w-1/2 h-full p-2 grid grid-cols-2 auto-rows-max gap-2 overflow-y-auto rounded-lg border-2 border-blue-900">
-        <CardList :cards="cards.itemCards" :type="'resource'" />
+      <div class="w-1/2 h-full rounded-lg border-2 border-blue-900 relative">
+        <CardDetail
+          v-if="resourceDialog.isOpen && resourceDialog.card"
+          @close-dialog="dialogHandlers['resource'].closeCardDialog"
+          :type="'resource'"
+          :card="store.getResourceCard(resourceDialog.card.id)"
+        />
+        <div class="p-2 grid grid-cols-2 auto-rows-max gap-2 overflow-y-auto">
+          <CardList @open-dialog="dialogHandlers['resource'].openCardDialog" :cards="cards.resourceCards" :type="'resource'" />
+        </div>
       </div>
     </section>
   </main>
