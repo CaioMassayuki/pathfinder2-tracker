@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
 import Dialog from "./design/Dialog.vue";
+import { CardType, CardOptions, CardOptionsLimit } from '../definitions'
 
 interface DialogProps {
   isOpen: boolean;

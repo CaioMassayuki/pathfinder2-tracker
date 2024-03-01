@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { storeToRefs } from "pinia";
 import { ref } from "vue";
-import ActionTracker from "./components/ActionTracker.vue";
-import CardList from "./components/Card/CardList.vue";
-import CardDetail from "./components/CardDetail.vue";
-import { useCardsStore } from "./store/store";
+import { storeToRefs } from "pinia";
 import { DialogState } from "./definitions";
+import { useCardsStore } from "./store/cardsStore/useCardStore";
+import CardDetail from "./components/CardDetail.vue";
+import CardList from "./components/Card/CardList.vue";
+import ActionTracker from "./components/ActionTracker.vue";
 
 const store = useCardsStore();
 const { cards } = storeToRefs(store);
@@ -20,7 +20,6 @@ const resourceDialog = ref({ ...dialogInitialState });
 
 const dialogHandlers = ref({
   action: {
-    cardDialog: (id: string) => store.getActionCard(id),
     openCardDialog: (id: string) => {
       actionDialog.value.isOpen = true;
       actionDialog.value.card = store.getActionCard(id) || null;
@@ -31,7 +30,6 @@ const dialogHandlers = ref({
     },
   },
   resource: {
-    cardDialog: (id: string) => store.getResourceCard(id),
     openCardDialog: (id: string) => {
       resourceDialog.value.isOpen = true;
       resourceDialog.value.card = store.getResourceCard(id) || null;
@@ -42,6 +40,8 @@ const dialogHandlers = ref({
     },
   },
 });
+
+
 </script>
 
 <template>
@@ -70,7 +70,7 @@ const dialogHandlers = ref({
           v-if="resourceDialog.isOpen && resourceDialog.card"
           @close-dialog="dialogHandlers['resource'].closeCardDialog"
           :type="'resource'"
-          :card="store.getResourceCard(resourceDialog.card.id)"
+          :card="resourceDialog.card"
         />
         <div class="p-2 grid grid-cols-2 auto-rows-max gap-2 overflow-y-auto">
           <CardList @open-dialog="dialogHandlers['resource'].openCardDialog" :cards="cards.resourceCards" :type="'resource'" />

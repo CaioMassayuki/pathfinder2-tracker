@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import type { Cards, CardType, CardOptions, } from '../definitions'
+import type { Cards, CardType, CardOptions } from "../../definitions";
 
 type TESTE = {
   actionCards: Cards;
@@ -51,7 +51,7 @@ const DEFAULT_CARDS: TESTE = {
 
 export const useCardsStore = defineStore("cards", {
   state: () => ({
-    cards: DEFAULT_CARDS,
+    cards: { ...DEFAULT_CARDS },
   }),
   getters: {
     getActionCard: (state) => (cardId: string) => state.cards.actionCards.find((card) => card.id === cardId),

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { useCardsStore } from "../store/store";
+import { useCardsStore } from "../store/cardsStore/useCardStore";
 import CardOptionsDialog from "./CardOptionsDialog.vue";
 import { CardType, Card, CardOptions, CardOptionQuantity, CardOptionsLimit } from "../definitions";
 const { optionLimitChange, changeCardTitle, changeCardDescription } = useCardsStore();
@@ -35,8 +35,6 @@ const cardChangeValidation = () => {
     }
     return props.card[key] !== cardChanges.value[key];
   });
-  console.log('PROPS :', props.card)
-  console.log('CARDCHANGES :', cardChanges.value)
 };
 
 const handleOptionDialog = (option: boolean) => {
