@@ -45,7 +45,7 @@ const dialogHandlers = ref({
 </script>
 
 <template>
-  <main class="h-full flex flex-col items-center justify-start p-4">
+  <main class="h-svh w-svw flex flex-col items-center justify-start p-4">
     <h1 class="text-5xl font-bold text-center">Pathfinder Action & Inventory Tracker</h1>
     <input
       class="my-2 p-1 h-10 text-xl rounded-md outline-transparent outline outline-2 outline-offset-0 hover:outline-neutral-500 focus:outline-neutral-400 transition-all ease-in-out duration-150"
